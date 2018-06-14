@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="UTF-8">
+    <title>饿了么地图</title>
+    <style type="text/css">
+        html{height:100%}
+        body{height:100%;margin:0px;padding:0px}
+        #container{height:100%}
+    </style>
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.1.1/jquery-3.1.1.min.js') }}"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=DGSeqIBXyjciis45Ku807tgcQC0oQ3Cf"></script>
+    <script type="text/javascript">
+        var map = new BMap.Map("container");
+        var point = new BMap.Point(121.481674,31.23896);
+        map.centerAndZoom(point, 15);
+        var marker = new BMap.Marker(point);
+        map.addOverlay(marker);
+
+        function addMarker(point){
+            var marker = new BMap.Marker(point);
+            map.addOverlay(marker);
+        }
+
+        var points_data = eval('{{data | safe}}')
+        $.each(points_data, function(i, item) {
+            var point = new BMap.Point(item.longitude, item.latitude);
+            addMarker(point);
+        })
+
+    </script>
+</body>
+</html>
