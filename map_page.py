@@ -11,7 +11,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 app.config.update(dict(
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:@localhost:3306/yata_data_01',
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:yata123@140.143.32.44:3306/yata_data_01',
     DEBUG = True,
     SECRET_KEY = 'yanzhipeng',
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -38,7 +38,7 @@ class ElmNew(db.Model):
 @app.route('/')
 def show_map():
 
-    query = db.session.query(ElmNew.ele_id.distinct().label('ele_id'), ElmNew.name, ElmNew.latitude, ElmNew.longitude).limit(20)
+    query = db.session.query(ElmNew.ele_id.distinct().label('ele_id'), ElmNew.name, ElmNew.latitude, ElmNew.longitude).limit(4000)
     # data = ElmNew.query.limit(10).offset(2)
     data = query.all()
     cwd = []

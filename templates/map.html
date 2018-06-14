@@ -20,6 +20,10 @@
         var map = new BMap.Map("container");
         var point = new BMap.Point(121.481674,31.23896);
         map.centerAndZoom(point, 15);
+        map.addControl(new BMap.NavigationControl());
+        map.addControl(new BMap.ScaleControl());
+        map.addControl(new BMap.OverviewMapControl());
+        map.addControl(new BMap.MapTypeControl());
         var marker = new BMap.Marker(point);
         map.addOverlay(marker);
 
